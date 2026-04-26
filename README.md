@@ -1,4 +1,4 @@
-# 🎀 Melodix: My Personal Music Vault 🎀
+# Melodix: My Personal Music Vault 
 
 <p align="center">
   <img src="https://img.shields.io/badge/Made%20with-%20Magic%20%26%20Python-ff69b4">
