@@ -1,16 +1,23 @@
-from src.core import Artist, Song, Podcast
+from src.core import Artist, Song, Podcast, User
 def main():
-    print("--- Music Management System Initialized ---")
+    print("---  Melodix: Music Management System ---\n")
+    artist = Artist("The Weeknd", "Canadian pop star")
+    song1 = Song("Blinding Lights", artist, 3.2, "After Hours", "Synthwave")
+    song2 = Song("Save Your Tears", artist, 3.6, "After Hours", "Synthpop")
     
-    artist = Artist("The Weeknd")
-    song = Song("Blinding Lights", artist, 3.5, "After Hours", "Synthwave")
-    pod = Podcast("Late Night Talk", artist, 45, 12, "Bella Hadid")
-    artist.track_list.append(song)
-    artist.track_list.append(pod)
-    print(f"Artist: {artist.name}")
-    print(f"Added Song: {song.get_details()}")
-    print(f"Added Podcast: {pod.get_details()}")
-    print(f"\nTotal tracks by {artist.name}: {len(artist.track_list)}")
+    user = User("Melody_Girl", "pass123")
+    print(f" Welcome, {user.username}!")
+    my_favs = user.create_playlist("Cozy Vibes")
+    print(f"Created playlist: '{my_favs.name}'")
+    my_favs.add_content(song1)
+    my_favs.add_content(song2)
+    
+    print("\n--- Current Playlist Details ---")
+    for item in my_favs.content_items:
+        print(item.get_details())
+    total_time = my_favs.calculate_total_duration()
+    print(f"\nTotal duration: {total_time} minutes")
+    print(f"System check: Complete for Week 1")
 
 if __name__ == "__main__":
     main()
