@@ -8,7 +8,7 @@
 ---
 
 ### Welcome to Melodix!
-This isn't just a coding project; it's a digital home for my favorite tracks and cozy podcasts. I wanted to build something that feels as organized and pretty as a well-curated playlist.
+ it's a digital home for my favorite tracks and cozy podcasts. I wanted to build something that feels as organized and pretty as a well-curated playlist.
 
 ### Key Features (System Architecture)
 * **`Content` (Base Class):** The foundation for all tracks, supporting **Polymorphism**.
