@@ -34,5 +34,5 @@
 
 ---
 <p align="center">
-  <i>"Code is like music; it has its own rhythm and beauty."</i>
+  <i>"to my dear historia..."</i>
 </p>
