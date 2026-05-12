@@ -1,23 +1,69 @@
-from src.core import Artist, Song, Podcast, User
+from src.core import MusicManager, Artist, Song
+
 def main():
-    print("---  Melodix: Music Management System ---\n")
-    artist = Artist("The Weeknd", "Canadian pop star")
-    song1 = Song("Blinding Lights", artist, 3.2, "After Hours", "Synthwave")
-    song2 = Song("Save Your Tears", artist, 3.6, "After Hours", "Synthpop")
+    manager = MusicManager()
     
-    user = User("Melody_Girl", "pass123")
-    print(f" Welcome, {user.username}!")
-    my_favs = user.create_playlist("Cozy Vibes")
-    print(f"Created playlist: '{my_favs.name}'")
-    my_favs.add_content(song1)
-    my_favs.add_content(song2)
-    
-    print("\n--- Current Playlist Details ---")
-    for item in my_favs.content_items:
-        print(item.get_details())
-    total_time = my_favs.calculate_total_duration()
-    print(f"\nTotal duration: {total_time} minutes")
-    print(f"System check: Complete for Week 1")
+    the_weeknd = Artist("The Weeknd")
+    manager.all_songs.append(Song("Blinding Lights", the_weeknd, 3.2, "After Hours", "Synthwave"))
+    manager.all_songs.append(Song("Save Your Tears", the_weeknd, 3.6, "After Hours", "Synthpop"))
+
+    current_user = None
+
+    print("--- Melodix ---")
+
+    while True:
+        if not current_user:
+            print("\n1. Register")
+            print("2. Login")
+            print("3. Exit")
+            
+            choice = input("\nSelect an option: ")
+
+            if choice == "1":
+                username = input("Enter username: ")
+                password = input("Enter password: ")
+                manager.register_user(username, password)
+                print("User registered successfully!")
+
+            elif choice == "2":
+                username = input("Username: ")
+                password = input("Password: ")
+                user = manager.login(username, password)
+                if user:
+                    current_user = user
+                    print(f"\nSuccessfully logged in! Welcome, {current_user.username}!")
+                else:
+                    print("\nInvalid credentials!")
+
+            elif choice == "3":
+                print("Goodbye!")
+                break
+        else:
+            print(f"\n--- User Menu ({current_user.username}) ---")
+            print("1. Search songs")
+            print("2. Create Playlist")
+            print("3. View my Playlists")
+            print("4. Logout")
+
+            user_choice = input("\nSelect an option: ")
+
+            if user_choice == "1":
+                title = input("Enter song title to search: ")
+                results = manager.search_by_title(title)
+                if results:
+                    for i, item in enumerate(results):
+                        print(f"{i+1}. {item.get_details()}")
+                else:
+                    print("Nothing found.")
+
+            elif user_choice == "2":
+                p_name = input("Enter playlist name: ")
+                current_user.create_playlist(p_name)
+                print(f"Playlist '{p_name}' created!")
+
+            elif user_choice == "4":
+                current_user = None
+                print("Logged out.")
 
 if __name__ == "__main__":
     main()
