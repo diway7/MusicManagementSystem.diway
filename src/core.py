@@ -1,3 +1,5 @@
+from datetime import datetime
+
 def log_action(func):
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
@@ -27,7 +29,7 @@ class Song(Content):
         self.genre = genre
 
     def get_details(self):
-        return f" Song: {self.title} | Artist: {self.artist.name} | Album: {self.album} | Genre: {self.genre}"
+        return f"🎵 Song: {self.title} | Artist: {self.artist.name} | Album: {self.album} | Genre: {self.genre}"
 
 class Podcast(Content):
     def __init__(self, title, artist, duration, episode_number, guest):
@@ -36,12 +38,13 @@ class Podcast(Content):
         self.guest = guest
 
     def get_details(self):
-        return f"Podcast Ep {self.episode_number}: {self.title} | Guest: {self.guest}"
+        return f"🎙 Podcast Ep {self.episode_number}: {self.title} | Guest: {self.guest}"
 
 class Playlist:
     def __init__(self, name):
         self.name = name
         self.content_items = []
+        self.created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     def add_content(self, item):
         self.content_items.append(item)
@@ -52,17 +55,31 @@ class Playlist:
     def calculate_total_duration(self):
         return round(sum(item.duration for item in self.content_items), 2)
 
+    def stream_tracks(self):
+        """
+        Generator function that yields tracks one by one, simulating a live stream.
+        Implements memory-efficient iteration as covered in the lectures.
+        """
+        if not self.content_items:
+            return
+            
+        for item in self.content_items:
+            yield f"[STREAMING] Currently playing: {item.title} ({item.duration} min)..."
+
+
 class User:
     def __init__(self, username, password):
         self.username = username
         self.password = password
         self.playlists = {}
+        self.registered_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     @log_action
     def create_playlist(self, name):
         new_playlist = Playlist(name)
         self.playlists[name] = new_playlist
         return new_playlist
+
 
 class MusicManager:
     def __init__(self):
@@ -86,4 +103,3 @@ class MusicManager:
             if u.username == username and u.password == password:
                 return u
         return None
-    

@@ -9,6 +9,7 @@ def main():
         manager.all_content.append(Song("Blinding Lights", the_weeknd, 3.2, "After Hours", "Synthwave"))
         manager.all_content.append(Song("Save Your Tears", the_weeknd, 3.6, "After Hours", "Synthpop"))
         manager.all_content.append(Podcast("AI Future", Artist("Tech Talk"), 45.0, 12, "Sam Altman"))
+        
     current_user = None
     print("--- Welcome to Melodix ---")
 
@@ -43,7 +44,7 @@ def main():
             print(f"\n--- User Menu ({current_user.username}) ---")
             print("1. Search content (Songs/Podcasts)")
             print("2. Create Playlist")
-            print("3. View my Playlists")
+            print("3. View my Playlists & Stream")
             print("4. Logout")
 
             user_choice = input("\nSelect an option: ")
@@ -54,16 +55,23 @@ def main():
                 if results:
                     for i, item in enumerate(results):
                         print(f"{i+1}. {item.get_details()}")
+                    
                     add_choice = input("\nWant to add a track to a playlist? (yes/no): ").lower()
-                    if add_choice == "yes" and current_user.playlists:
-                        track_idx = int(input("Enter track number from search: ")) - 1
-                        p_name = input("Enter your playlist name: ")
-                        if p_name in current_user.playlists and 0 <= track_idx < len(results):
-                            current_user.playlists[p_name].add_content(results[track_idx])
-                            print(f"Added to '{p_name}'!")
-                            StorageManager.save_data(manager.users, manager.all_content)
+                    if add_choice == "yes":
+                        if not current_user.playlists:
+                            print("You don't have any playlists yet! Create one first.")
                         else:
-                            print("Playlist not found or invalid selection.")
+                            try:
+                                track_idx = int(input("Enter track number from search: ")) - 1
+                                p_name = input("Enter your playlist name: ")
+                                if p_name in current_user.playlists and 0 <= track_idx < len(results):
+                                    current_user.playlists[p_name].add_content(results[track_idx])
+                                    print(f"Added to '{p_name}'!")
+                                    StorageManager.save_data(manager.users, manager.all_content)
+                                else:
+                                    print("Playlist not found or invalid selection.")
+                            except ValueError:
+                                print("Invalid input! Please enter a number.")
                 else:
                     print("Nothing found.")
 
@@ -78,11 +86,24 @@ def main():
                     print("You have no playlists yet.")
                 else:
                     for p_name, p_obj in current_user.playlists.items():
-                        print(f"\n--- Playlist: {p_name} ({p_obj.calculate_total_duration()} mins) ---")
+                        print(f"\n--- Playlist: {p_name} (Created: {p_obj.created_at}) ---")
+                        print(f"Total duration: {p_obj.calculate_total_duration()} mins")
                         if not p_obj.content_items:
                             print("  [Empty]")
                         for item in p_obj.content_items:
                             print(f"  - {item.title} ({item.duration} min)")
+                    
+                    stream_choice = input("\nDo you want to simulate live streaming a playlist? (yes/no): ").lower()
+                    if stream_choice == "yes":
+                        p_to_stream = input("Enter playlist name to stream: ")
+                        if p_to_stream in current_user.playlists:
+                            playlist = current_user.playlists[p_to_stream]
+                            print("\n--- Connecting to Stream Server ---")
+                            
+                            for track_stream_log in playlist.stream_tracks():
+                                print(track_stream_log)
+                        else:
+                            print("Playlist not found.")
 
             elif user_choice == "4":
                 current_user = None
@@ -90,4 +111,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
