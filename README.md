@@ -1,10 +1,5 @@
 # Melodix: My Personal Music Vault 
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Made%20with-%20Magic%20%26%20Python-ff69b4">
-  <img src="https://img.shields.io/badge/Vibe-Aesthetic%20Code-purple">
-</p>
-
 ---
 
 ### Welcome to Melodix!
@@ -30,7 +25,7 @@
 
 ### Project Structure
 
-```text
+text
 MusicManagementSystem/
 │
 ├── data/
@@ -50,6 +45,7 @@ MusicManagementSystem/
 └── README.md
 
 ---
+
 <p align="center">
   <i>"to my dear historia..."</i>
 </p>
