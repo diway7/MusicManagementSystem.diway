@@ -86,3 +86,4 @@ class MusicManager:
             if u.username == username and u.password == password:
                 return u
         return None
+    

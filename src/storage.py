@@ -74,3 +74,4 @@ class StorageManager:
             print("[STORAGE] Data successfully loaded from backup.")
         except (json.JSONDecodeError, KeyError) as e:
             print(f"[STORAGE ERROR] Data file is corrupted, starting fresh: {e}")
+            
