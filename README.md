@@ -25,7 +25,7 @@
 
 ### Project Structure
 
-text
+```text
 MusicManagementSystem/
 │
 ├── data/
@@ -45,6 +45,7 @@ MusicManagementSystem/
 └── README.md
 
 ---
+```
 
 <p align="center">
   <i>"to my dear historia..."</i>
