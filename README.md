@@ -29,8 +29,25 @@
 ---
 
 ### Project Structure
-- `main.py`: Entry point to test the system logic.
-- `src/core.py`: Core OOP logic and class definitions.
+
+```text
+MusicManagementSystem/
+│
+├── data/
+│   └── data.json
+│
+├── src/
+│   ├── __init__.py
+│   ├── core.py
+│   └── storage.py
+│
+├── tests/
+│   ├── __init__.py
+│   └── test_core.py
+│
+├── main.py
+├── .gitignore
+└── README.md
 
 ---
 <p align="center">
