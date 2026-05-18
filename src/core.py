@@ -1,7 +1,7 @@
 def log_action(func):
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
-        print(f"[LOG] Action: {func.__name__} executed successfully.")
+        print(f"[LOG] Action: '{func.__name__}' executed successfully.")
         return result
     return wrapper
 
@@ -27,7 +27,7 @@ class Song(Content):
         self.genre = genre
 
     def get_details(self):
-        return f"🎵 Song: {self.title} | Artist: {self.artist.name} | Album: {self.album} | Genre: {self.genre}"
+        return f" Song: {self.title} | Artist: {self.artist.name} | Album: {self.album} | Genre: {self.genre}"
 
 class Podcast(Content):
     def __init__(self, title, artist, duration, episode_number, guest):
@@ -36,7 +36,7 @@ class Podcast(Content):
         self.guest = guest
 
     def get_details(self):
-        return f"🎙 Podcast Ep {self.episode_number}: {self.title} | Guest: {self.guest}"
+        return f"Podcast Ep {self.episode_number}: {self.title} | Guest: {self.guest}"
 
 class Playlist:
     def __init__(self, name):
@@ -47,7 +47,6 @@ class Playlist:
         self.content_items.append(item)
 
     def remove_content(self, title):
-        # Удаляем трек по названию
         self.content_items = [item for item in self.content_items if item.title.lower() != title.lower()]
 
     def calculate_total_duration(self):
@@ -71,15 +70,13 @@ class MusicManager:
         self.users = []
 
     def search_by_title(self, title):
-        results = [item for item in self.all_content if title.lower() in item.title.lower()]
-        return results
+        return [item for item in self.all_content if title.lower() in item.title.lower()]
 
     @log_action
     def register_user(self, username, password):
         if any(u.username == username for u in self.users):
             print(f"User '{username}' already exists!")
             return None
-        
         new_user = User(username, password)
         self.users.append(new_user)
         return new_user
