@@ -47,6 +47,3 @@ MusicManagementSystem/
 ---
 ```
 
-<p align="center">
-  <i>"to my dear historia..."</i>
-</p>
