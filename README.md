@@ -24,6 +24,8 @@
 ---
 
 ### Project Structure
+
+```text
 MusicManagementSystem/
 │
 ├── src/
