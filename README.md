@@ -86,5 +86,4 @@ classDiagram
     Content <|-- Song : Inheritance
     Content <|-- Podcast : Inheritance
     Content "*" --> "1" Artist : by
----
-```
+
