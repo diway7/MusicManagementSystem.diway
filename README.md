@@ -91,23 +91,23 @@ classDiagram
 
 ### Architecture Diagram
 ```mermaid
-graph TD
-    %% Определение стилей блоков
-    classDef uiStyle fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef logicStyle fill:#bbf,stroke:#333,stroke-width:2px;
-    classDef storageStyle fill:#fbf,stroke:#333,stroke-width:2px;
-    classDef testStyle fill:#fff,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5;
-    classDef dbStyle fill:#f96,stroke:#333,stroke-width:2px;
+graph LR
+    %% Layer Styles Definition (Hex Colors)
+    classDef uiStyle fill:#EBF5FB,stroke:#2980B9,stroke-width:2px;
+    classDef logicStyle fill:#EAF2F8,stroke:#2471A3,stroke-width:2px;
+    classDef storageStyle fill:#F4ECF7,stroke:#7D3C98,stroke-width:2px;
+    classDef testStyle fill:#E8F8F5,stroke:#117A65,stroke-width:2px,stroke-dasharray: 5 5;
+    classDef dbStyle fill:#FEF9E7,stroke:#D35400,stroke-width:2px;
 
-    %% Узлы архитектуры
-    UI["<b>USER INTERFACE</b><br>main.py (Console Menu, Inputs & Outputs)"]:::uiStyle
-    Logic["<b>BUSINESS LOGIC</b><br>src/core.py (MusicManager, User, Song, Playlist)"]:::logicStyle
-    Storage["<b>DATA STORAGE</b><br>src/storage.py (JSON Framework)"]:::storageStyle
-    Tests["<b>AUTOMATED TESTS</b><br>tests/test_core.py (Unittest Framework)"]:::testStyle
+    %% Architectural Layer Nodes
+    UI[" <b>USER INTERFACE</b><br>main.py (Console Menu)"]:::uiStyle
+    Logic[" <b>BUSINESS LOGIC</b><br>src/core.py (Data Models)"]:::logicStyle
+    Storage[" <b>DATA STORAGE</b><br>src/storage.py (JSON Layer)"]:::storageStyle
+    Tests[" <b>AUTOMATED TESTS</b><br>tests/test_core.py"]:::testStyle
     JSON[("<b>LOCAL DATABASE</b><br>data/data.json")]:::dbStyle
 
-    %% Связи между слоями
+    %% Relationships and Data Flow
     UI -->|Calls methods| Logic
-    Logic -->|Uses for save/load| Storage
-    Logic -.->|Validates behavior| Tests
-    Storage -->|Writes/Reads disk| JSON
+    Logic -->|Saves & Loads data| Storage
+    Storage -->|Reads & Writes| JSON
+    Tests -.->|Validates behavior| Logic
