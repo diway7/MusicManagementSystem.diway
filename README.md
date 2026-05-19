@@ -47,3 +47,40 @@ MusicManagementSystem/
 ---
 ```
 
+```mermaid
+classDiagram
+    class User {
+        -str username
+        -str password
+    }
+    class Playlist {
+        -str name
+        -list content_items
+    }
+    class Content {
+        -str title
+        -Artist artist
+        -float duration
+        +get_details() str
+    }
+    class Song {
+        -str album
+        -str genre
+        +get_details() str
+    }
+    class Podcast {
+        -int episode_number
+        -str guest
+        +get_details() str
+    }
+    class Artist {
+        -str name
+        -str bio
+        -list track_list
+    }
+
+    User "1" --> "*" Playlist : owns
+    Playlist "*" --> "*" Content : contains
+    Content <|-- Song : Inheritance
+    Content <|-- Podcast : Inheritance
+    Content "*" --> "1" Artist : by
