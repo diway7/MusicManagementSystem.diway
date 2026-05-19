@@ -37,6 +37,7 @@ MusicManagementSystem/
 ├── main.py
 ├── README.md
 └── requirements.txt
+---
 ```
 
 
