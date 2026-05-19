@@ -29,7 +29,7 @@ class Song(Content):
         self.genre = genre
 
     def get_details(self):
-        return f"🎵 Song: {self.title} | Artist: {self.artist.name} | Album: {self.album} | Genre: {self.genre}"
+        return f"Song: {self.title} | Artist: {self.artist.name} | Album: {self.album} | Genre: {self.genre}"
 
 class Podcast(Content):
     def __init__(self, title, artist, duration, episode_number, guest):
@@ -38,7 +38,7 @@ class Podcast(Content):
         self.guest = guest
 
     def get_details(self):
-        return f"🎙 Podcast Ep {self.episode_number}: {self.title} | Guest: {self.guest}"
+        return f"Podcast Ep {self.episode_number}: {self.title} | Guest: {self.guest}"
 
 class Playlist:
     def __init__(self, name):

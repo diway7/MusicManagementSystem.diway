@@ -1,0 +1,37 @@
+{
+    "users": [
+        {
+            "username": "diway",
+            "password": "diana150707",
+            "playlists": {
+                "vibe": []
+            }
+        }
+    ],
+    "catalog": [
+        {
+            "title": "Blinding Lights",
+            "artist": "The Weeknd",
+            "duration": 3.2,
+            "type": "song",
+            "album": "After Hours",
+            "genre": "Synthwave"
+        },
+        {
+            "title": "Save Your Tears",
+            "artist": "The Weeknd",
+            "duration": 3.6,
+            "type": "song",
+            "album": "After Hours",
+            "genre": "Synthpop"
+        },
+        {
+            "title": "AI Future",
+            "artist": "Tech Talk",
+            "duration": 45.0,
+            "type": "podcast",
+            "episode_number": 12,
+            "guest": "Sam Altman"
+        }
+    ]
+}
