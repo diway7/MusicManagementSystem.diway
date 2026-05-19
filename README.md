@@ -91,35 +91,37 @@ classDiagram
 
 ### Architecture Diagram
 ```mermaid
-graph LR
-    %% Контрастные и строгие стили (Темный текст на светлом фоне)
-    classDef uiStyle fill:#FFFFFF,stroke:#1A5276,stroke-width:2px,color:#1A5276;
-    classDef logicStyle fill:#FFFFFF,stroke:#1F618D,stroke-width:2px,color:#1F618D;
-    classDef storageStyle fill:#FFFFFF,stroke:#6C3483,stroke-width:2px,color:#6C3483;
-    classDef testStyle fill:#FFFFFF,stroke:#117A65,stroke-width:2px,stroke-dasharray: 5 5,color:#117A65;
-    classDef dbStyle fill:#FDFEFE,stroke:#BA4A00,stroke-width:2px,color:#BA4A00;
+graph TD
+    %% Strict High-Contrast Styles (Black text on crisp white backgrounds)
+    classDef uiStyle fill:#FFFFFF,stroke:#1A5276,stroke-width:2px,color:#000000;
+    classDef logicStyle fill:#FFFFFF,stroke:#2471A3,stroke-width:2px,color:#000000;
+    classDef storageStyle fill:#FFFFFF,stroke:#6C3483,stroke-width:2px,color:#000000;
+    classDef testStyle fill:#FFFFFF,stroke:#117A65,stroke-width:2px,stroke-dasharray: 5 5,color:#000000;
+    classDef dbStyle fill:#FFFFFF,stroke:#BA4A00,stroke-width:2px,color:#000000;
 
-    %% Узлы с принудительным переносом строк через ковычки
+    %% Root Level Portals
     UI["USER INTERFACE
-    main.py (Console Menu)"]:::uiStyle
+    main.py (App Entry Point)"]:::uiStyle
 
+    %% Isolated System Packages (src/ and tests/)
     Logic["BUSINESS LOGIC
     src/core.py (Data Models)"]:::logicStyle
 
-    Storage["DATA STORAGE
-    src/storage.py (JSON Layer)"]:::storageStyle
+    Storage["DATA STORAGE LAYER
+    src/storage.py (JSON Framework)"]:::storageStyle
 
     Tests["AUTOMATED TESTS
-    tests/test_core.py"]:::testStyle
+    tests/test_core.py (Unittest)"]:::testStyle
 
-    JSON[("LOCAL DATABASE
+    %% Database Directory (data/)
+    JSON[("INDEPENDENT DATABASE
     data/data.json")]:::dbStyle
 
-    %% Пути движения данных
-    UI -->|Calls methods| Logic
-    Logic -->|Saves & Loads data| Storage
-    Storage -->|Reads & Writes| JSON
-    Tests -.->|Validates behavior| Logic
+    %% Explicit Execution Flow & Architecture Constraints
+    UI -->|1. Invokes Logic| Logic
+    Logic -->|2. Requests Persistence| Storage
+    Storage -->|3. Writes to Root Directory| JSON
+    Tests -.->|Validates Integrity| Logic
 ```
 
 
