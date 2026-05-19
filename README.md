@@ -24,27 +24,19 @@
 ---
 
 ### Project Structure
-
-```text
 MusicManagementSystem/
-│
-├── data/
-│   └── data.json
 │
 ├── src/
 │   ├── __init__.py
 │   ├── core.py
 │   └── storage.py
-│
 ├── tests/
 │   ├── __init__.py
 │   └── test_core.py
 │
 ├── main.py
-├── .gitignore
-└── README.md
-
----
+├── README.md
+└── requirements.txt
 ```
 
 
