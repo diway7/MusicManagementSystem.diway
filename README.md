@@ -36,9 +36,11 @@ MusicManagementSystem/
 │   ├── __init__.py
 │   └── test_core.py
 │
+├── data.json
 ├── main.py
 ├── README.md
 └── requirements.txt
+
 ---
 ```
 
