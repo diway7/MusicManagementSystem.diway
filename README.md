@@ -92,21 +92,30 @@ classDiagram
 ### Architecture Diagram
 ```mermaid
 graph LR
-    %% Layer Styles Definition (Hex Colors)
+    %% Professional Layer Color Palettes
     classDef uiStyle fill:#EBF5FB,stroke:#2980B9,stroke-width:2px;
     classDef logicStyle fill:#EAF2F8,stroke:#2471A3,stroke-width:2px;
     classDef storageStyle fill:#F4ECF7,stroke:#7D3C98,stroke-width:2px;
     classDef testStyle fill:#E8F8F5,stroke:#117A65,stroke-width:2px,stroke-dasharray: 5 5;
     classDef dbStyle fill:#FEF9E7,stroke:#D35400,stroke-width:2px;
 
-    %% Architectural Layer Nodes
-    UI[" <b>USER INTERFACE</b><br>main.py (Console Menu)"]:::uiStyle
-    Logic[" <b>BUSINESS LOGIC</b><br>src/core.py (Data Models)"]:::logicStyle
-    Storage[" <b>DATA STORAGE</b><br>src/storage.py (JSON Layer)"]:::storageStyle
-    Tests[" <b>AUTOMATED TESTS</b><br>tests/test_core.py"]:::testStyle
-    JSON[("<b>LOCAL DATABASE</b><br>data/data.json")]:::dbStyle
+    %% Architectural Nodes with Safe Line Breaks
+    UI["USER INTERFACE
+    main.py (Console Menu)"]:::uiStyle
 
-    %% Relationships and Data Flow
+    Logic["BUSINESS LOGIC
+    src/core.py (Data Models)"]:::logicStyle
+
+    Storage["DATA STORAGE
+    src/storage.py (JSON Layer)"]:::storageStyle
+
+    Tests["AUTOMATED TESTS
+    tests/test_core.py"]:::testStyle
+
+    JSON[("LOCAL DATABASE
+    data/data.json")]:::dbStyle
+
+    %% Explicit Data Flow and Interaction Paths
     UI -->|Calls methods| Logic
     Logic -->|Saves & Loads data| Storage
     Storage -->|Reads & Writes| JSON
