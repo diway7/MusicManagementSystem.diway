@@ -92,14 +92,14 @@ classDiagram
 ### Architecture Diagram
 ```mermaid
 graph LR
-    %% Professional Layer Color Palettes
-    classDef uiStyle fill:#EBF5FB,stroke:#2980B9,stroke-width:2px;
-    classDef logicStyle fill:#EAF2F8,stroke:#2471A3,stroke-width:2px;
-    classDef storageStyle fill:#F4ECF7,stroke:#7D3C98,stroke-width:2px;
-    classDef testStyle fill:#E8F8F5,stroke:#117A65,stroke-width:2px,stroke-dasharray: 5 5;
-    classDef dbStyle fill:#FEF9E7,stroke:#D35400,stroke-width:2px;
+    %% Контрастные и строгие стили (Темный текст на светлом фоне)
+    classDef uiStyle fill:#FFFFFF,stroke:#1A5276,stroke-width:2px,color:#1A5276;
+    classDef logicStyle fill:#FFFFFF,stroke:#1F618D,stroke-width:2px,color:#1F618D;
+    classDef storageStyle fill:#FFFFFF,stroke:#6C3483,stroke-width:2px,color:#6C3483;
+    classDef testStyle fill:#FFFFFF,stroke:#117A65,stroke-width:2px,stroke-dasharray: 5 5,color:#117A65;
+    classDef dbStyle fill:#FDFEFE,stroke:#BA4A00,stroke-width:2px,color:#BA4A00;
 
-    %% Architectural Nodes with Safe Line Breaks
+    %% Узлы с принудительным переносом строк через ковычки
     UI["USER INTERFACE
     main.py (Console Menu)"]:::uiStyle
 
@@ -115,7 +115,7 @@ graph LR
     JSON[("LOCAL DATABASE
     data/data.json")]:::dbStyle
 
-    %% Explicit Data Flow and Interaction Paths
+    %% Пути движения данных
     UI -->|Calls methods| Logic
     Logic -->|Saves & Loads data| Storage
     Storage -->|Reads & Writes| JSON
