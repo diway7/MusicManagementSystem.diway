@@ -120,3 +120,44 @@ graph LR
     Logic -->|Saves & Loads data| Storage
     Storage -->|Reads & Writes| JSON
     Tests -.->|Validates behavior| Logic
+```
+
+
+### Flowchart
+```mermaid
+graph TD
+    %% High-contrast and simple styles (Black text on white background)
+    classDef startStyle fill:#FFFFFF,stroke:#000000,stroke-width:2px,color:#000000;
+    classDef processStyle fill:#FFFFFF,stroke:#1A5276,stroke-width:1px,color:#000000;
+    classDef conditionStyle fill:#FFFFFF,stroke:#B7950B,stroke-width:2px,color:#000000;
+
+    %% Application flow block definitions
+    START([START]):::startStyle
+    
+    Load["Load System Data
+    (StorageManager.load_data)"]:::processStyle
+    
+    Check{"Is User
+    Logged In?"}:::conditionStyle
+    
+    MenuGuest["SHOW GUEST MENU
+    - Register
+    - Login
+    - Exit"]:::processStyle
+    
+    MenuUser["SHOW USER DASHBOARD
+    - Search Content
+    - Create Playlist
+    - Stream Playlists
+    - Logout"]:::processStyle
+
+    %% Logical paths and routing execution
+    START --> Load
+    Load --> Check
+    
+    Check -->|NO| MenuGuest
+    Check -->|YES| MenuUser
+    
+    %% Infinite loop mechanics (return to session state check)
+    MenuGuest -.->|Loop| Check
+    MenuUser -.->|Loop| Check
